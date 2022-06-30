@@ -17,7 +17,7 @@ namespace Store.Domain.Entities
             AddNotifications(
                 new Contract<Product>()
                     .Requires()
-                    .IsNullOrWhiteSpace(title, "Product.Title", "Product title must not be empty")
+                    .IsNotNullOrWhiteSpace(title, "Product.Title", "Product title must not be empty")
                     .IsGreaterThan(price, MINIMUM_PRODUCT_PRICE, "Product.Price", "Product price must be greater than 0")
                     .IsNotNull(isActive, "Product.IsActive", "Product is active must be informed")
             );

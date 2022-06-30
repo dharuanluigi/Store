@@ -23,12 +23,15 @@ namespace Store.Domain.Entities
                 new Contract<OrderItem>()
                 .Requires()
                 .IsNotNull(product, "OrderItem.Product", "Product must not be null")
-                .IsGreaterThan(quantity, MINIMUM_ITEMS_QUANTITY, "OrderItem.Quantity", "Product quantity must be greater than 0")
+                .IsGreaterOrEqualsThan(quantity, MINIMUM_ITEMS_QUANTITY, "OrderItem.Quantity", "Product quantity must be greater than 0")
             );
 
-            Product = product;
-            Price = (product?.Price) ?? NO_PRICE;
-            Quantity = quantity;
+            if (IsValid)
+            {
+                Product = product;
+                Price = (product?.Price) ?? NO_PRICE;
+                Quantity = quantity;
+            }
         }
 
         public decimal Total()
