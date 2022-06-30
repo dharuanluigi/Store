@@ -1,4 +1,6 @@
-﻿namespace Store.Domain.Entities
+﻿using Flunt.Validations;
+
+namespace Store.Domain.Entities
 {
     public class Discount : Entity
     {
@@ -11,6 +13,13 @@
 
         public Discount(decimal amount, DateTime expireDate)
         {
+            AddNotifications(
+                new Contract<Discount>()
+                    .Requires()
+                    .IsNotNull(amount, "Discount.Amount", "Discont amount must be informed if is zero, zero must be informed")
+                    .IsNotNull(expireDate, "Discount.ExpireDate", "An expiration date must be informed")
+            );
+
             Amount = amount;
             ExpireDate = expireDate;
         }
