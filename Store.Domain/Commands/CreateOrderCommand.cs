@@ -20,8 +20,8 @@ namespace Store.Domain.Commands
 
         public CreateOrderCommand(string customer, string zipCode, string promoCode)
         {
-            Customer = customer;
-            ZipCode = zipCode;
+            Customer = customer ?? string.Empty;
+            ZipCode = zipCode ?? string.Empty;
             PromoCode = promoCode;
             Items = new List<CreateOrderItemCommand>();
         }
@@ -33,6 +33,7 @@ namespace Store.Domain.Commands
                     .Requires()
                     .IsTrue(Customer.Length == CUSTOMER_DOCUMENT_LENGTH, "CreateOrderCommand.Customer", "Invalid informed customer, document should have 11 caracters")
                     .IsTrue(ZipCode.Length == ZIP_CODE_LENGTH, "CreateOrderComand.ZipCode", "Invalid informed zip code, the zip code should contains 8 caracters")
+                    .IsGreaterThan(Items.Count, 0, "CreateOrderCommand.Items", "An order item command, must contain at least item in order")
             );
         }
     }

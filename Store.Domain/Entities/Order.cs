@@ -33,7 +33,6 @@ namespace Store.Domain.Entities
                 new Contract<Customer>()
                     .Requires()
                     .IsNotNull(customer, "Order.Customer", "Customer must not be null")
-                    .IsNotNull(discount, "Order.Discount", "Discount must not be null")
             );
 
             Number = Guid.NewGuid().ToString()[..NUMBER_LENGTH];

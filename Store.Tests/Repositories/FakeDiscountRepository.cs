@@ -17,7 +17,7 @@ namespace Store.Tests.Repositories
                 return new Discount(10, DateTime.UtcNow.AddDays(-5));
             }
 
-            return default;
+            return default(Discount);
         }
     }
 }
