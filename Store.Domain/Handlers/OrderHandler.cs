@@ -52,7 +52,7 @@ namespace Store.Domain.Handlers
 
             var products = _productRespository.Get(ExtractGuids.Extract(command.Items)).ToList();
 
-            var order = new Order(customer, deliveryFee, discount);
+            var order = new Order(customer!, deliveryFee, discount);
 
             foreach (var item in command.Items)
             {

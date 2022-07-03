@@ -24,7 +24,7 @@ namespace Store.Domain.Entities
             ExpireDate = expireDate;
         }
 
-        public bool IsValid()
+        public new bool IsValid()
         {
             return DateTime.Compare(DateTime.UtcNow, ExpireDate) < DATETIME_IS_VALID;
         }
